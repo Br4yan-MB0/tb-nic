@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Campanha de conscientização sobre o uso responsável da água em Portugal. Cada gota conta para preservar o azul do nosso planeta.">
+  <meta name="keywords" content="água, sustentabilidade, Portugal, conservação, meio ambiente, seca">
+  <meta name="author" content="A vida em Cor de Azul">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="A vida em Cor de Azul - Campanha de Conscientização">
+  <meta property="og:description" content="Juntos podemos preservar a água. Cada gota conta para o futuro do planeta.">
+  
+  <title>A vida em Cor de Azul - Campanha de Conscientização sobre Água</title>
+  
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      /* Cores base */
+      --background: 0 0% 100%;
+      --foreground: 220 15% 15%;
+
+      /* Cores da seca */
+      --drought: 30 8% 45%;
+      --drought-light: 30 10% 85%;
+      --drought-dark: 30 15% 25%;
+
+      /* Cores da água */
+      --water: 200 95% 45%;
+      --water-light: 200 85% 75%;
+      --water-dark: 200 85% 25%;
+      --water-glow: 200 100% 55%;
+
+      /* Cores de esperança */
+      --hope: 175 65% 45%;
+      --hope-light: 175 55% 75%;
+
+      /* Gradientes */
+      --gradient-drought: linear-gradient(135deg, hsl(30 8% 45%) 0%, hsl(30 15% 25%) 100%);
+      --gradient-water: linear-gradient(135deg, hsl(200 95% 45%) 0%, hsl(200 85% 25%) 100%);
+      --gradient-hope: linear-gradient(135deg, hsl(175 65% 45%) 0%, hsl(200 95% 45%) 100%);
+      --gradient-sky: linear-gradient(180deg, hsl(200 85% 75%) 0%, hsl(200 95% 45%) 100%);
+
+      /* Sombras */
+      --shadow-soft: 0 8px 32px -8px hsl(220 15% 15% / 0.15);
+      --shadow-glow: 0 0 40px hsl(200 100% 55% / 0.4);
+      --shadow-dramatic: 0 20px 60px -20px hsl(220 15% 15% / 0.3);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      background: hsl(var(--background));
+      color: hsl(var(--foreground));
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Animações */
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes drop-fall {
+      0% {
+        transform: translateY(-100px) scale(0);
+        opacity: 0;
+      }
+      50% { opacity: 1; }
+      100% {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes ripple {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5);
+        opacity: 0;
+      }
+    }
+
+    @keyframes counter {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .animate-fade-up {
+      animation: fade-up 0.8s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-fade-in {
+      animation: fade-in 1s ease-out forwards;
+      opacity: 0;
+    }
+
+    .animate-drop {
+      animation: drop-fall 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .animate-ripple {
+      animation: ripple 2s ease-out infinite;
+    }
+
+    .animate-counter {
+      animation: counter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .delay-200 { animation-delay: 0.2s; }
+    .delay-300 { animation-delay: 0.3s; }
+    .delay-400 { animation-delay: 0.4s; }
+    .delay-500 { animation-delay: 0.5s; }
+    .delay-700 { animation-delay: 0.7s; }
+    .delay-1000 { animation-delay: 1s; }
+
+    /* Utility Classes */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    .section {
+      position: relative;
+      min-height: 100vh;
+    }
+
+    .section-content {
+      position: relative;
+      z-index: 10;
+    }
+
+    .bg-gradient-drought {
+      background: var(--gradient-drought);
+    }
+
+    .bg-gradient-water {
+      background: var(--gradient-water);
+    }
+
+    .bg-gradient-sky {
+      background: var(--gradient-sky);
+    }
+
+    .shadow-glow {
+      box-shadow: var(--shadow-glow);
+    }
+
+    .shadow-dramatic {
+      box-shadow: var(--shadow-dramatic);
+    }
+
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      filter: grayscale(30%) brightness(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, 
+        hsl(30 15% 25% / 0.7),
+        hsl(30 8% 45% / 0.5),
+        hsl(30 15% 25% / 0.7)
+      );
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 1200px;
+      padding: 2rem;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      font-weight: 700;
+      color: white;
+      margin-bottom: 2rem;
+      text-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .hero-text {
+      font-size: clamp(1.25rem, 3vw, 2rem);
+      color: rgba(255,255,255,0.9);
+      font-weight: 300;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .hero-text strong {
+      font-weight: 700;
+      color: hsl(var(--destructive-foreground));
+    }
+
+    .arrow-down {
+      width: 3rem;
+      height: 3rem;
+      color: rgba(255,255,255,0.7);
+      margin: 0 auto;
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Stats Card */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-value {
+      font-size: 3rem;
+      font-weight: 700;
+      color: hsl(var(--water-light));
+      margin: 0.5rem 0;
+    }
+
+    .stat-unit {
+      font-size: 1.25rem;
+      color: rgba(255,255,255,0.8);
+    }
+
+    /* Image Card */
+    .image-card {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-dramatic);
+    }
+
+    .image-card img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      display: flex;
+      align-items: flex-end;
+      padding: 2rem;
+      color: white;
+    }
+
+    /* Tips Grid */
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .tips-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      padding: 2rem;
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .tips-card ul {
+      list-style: none;
+    }
+
+    .tips-card li {
+      display: flex;
+      gap: 1rem;
+      margin: 1rem 0;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 2rem 0;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(5px);
+      padding: 0.75rem 1.5rem;
+      border-radius: 2rem;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    /* Share Buttons */
+    .share-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+    }
+
+    .share-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+      color: white;
+    }
+
+    .share-btn:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+
+    .share-twitter { background: #1DA1F2; }
+    .share-facebook { background: #4267B2; }
+    .share-linkedin { background: #0077B5; }
+    .share-whatsapp { background: #25D366; }
+    .share-copy { background: hsl(var(--water)); }
+
+    /* Wave Transition */
+    .wave-transition {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+      height: 80px;
+    }
+
+    .wave-transition svg {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 80px;
+    }
+
+    /* Footer */
+    footer {
+      background: hsl(var(--drought-dark));
+      color: rgba(255,255,255,0.7);
+      padding: 2rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+      
+      .hero-text {
+        font-size: 1.25rem;
+      }
+
+      .stat-card {
+        padding: 1.5rem;
+      }
+
+      .image-card img {
+        height: 300px;
+      }
+    }
+
+    /* Background Effects */
+    .bg-effect {
+      position: absolute;
+      inset: 0;
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .glow-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+    }
+
+    .glow-water {
+      background: hsl(var(--water-glow));
+      width: 400px;
+      height: 400px;
+      top: 25%;
+      left: 25%;
+    }
+
+    .glow-hope {
+      background: hsl(var(--hope));
+      width: 400px;
+      height: 400px;
+      bottom: 25%;
+      right: 25%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Cena 1 - O Silêncio da Seca -->
+  <section class="section hero">
+    <div class="hero-bg" style="background-image: url('./assets/drought-portugal.jpg')"></div>
+    <div class="hero-overlay"></div>
+    
+    <div class="section-content hero-content">
+      <h1 class="hero-title animate-fade-up">A Vida em Cor de Azul</h1>
+      
+      <div style="max-width: 64rem; margin: 0 auto;">
+        <p class="hero-text animate-fade-up delay-200">
+          Mais de <strong>2 bilhões de pessoas</strong> no mundo vivem com escassez de água.
+        </p>
+        
+        <p class="hero-text animate-fade-up delay-300">
+          Em Portugal, <strong>70% do território</strong> já enfrenta risco elevado de seca prolongada.
+        </p>
+        
+        <p class="hero-text animate-fade-up delay-500" style="font-size: clamp(1.5rem, 3.5vw, 2.5rem); font-weight: 500; margin-top: 3rem;">
+          E, mesmo assim… a gente continua desperdiçando.
+        </p>
+      </div>
+
+      <div style="margin-top: 4rem;" class="animate-fade-up delay-700">
+        <svg class="arrow-down" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </div>
+
+    <div style="position: absolute; bottom: 0; left: 0; right: 0; font-size: 0.875rem; color: rgba(255,255,255,0.5); padding: 1rem; text-align: center; z-index: 20;">
+      Fontes: ONU Água 2024, Agência Portuguesa do Ambiente 2025
+    </div>
+    
+    <div class="wave-transition">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+              fill="hsl(30 15% 25%)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Cena 2 - O Desperdício Invisível -->
+  <section class="section" style="padding: 5rem 0; background: linear-gradient(to bottom, hsl(30 15% 25%), hsl(30 8% 45%)); overflow: hidden;">
+  <div class="container">
+    <div style="max-width: 64rem; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
+      <h2 style="font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; color: white; margin-bottom: 2rem;">
+        O Desperdício Invisível
+      </h2>
+      <p style="font-size: clamp(1.25rem, 2.5vw, 2rem); color: rgba(255,255,255,0.8); line-height: 1.6;">
+        Parece pouco… Mas quando milhões fazem o mesmo, o planeta sente.<br />
+        <span style="font-weight: 600;">Cada gota perdida é uma vida em risco.</span>
+      </p>
+    </div>
+
+    <div class="stats-grid">
+      <!-- BANHO -->
+      <div class="stat-card">
+        <div class="stat-icon">
+          <img src="/chuveiro.png" alt="Banho" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));" />
+        </div>
+        <h3 style="font-size: 1.5rem; color: white; margin-bottom: 1rem;">Banho de 15 minutos</h3>
+        <div>
+          <span class="stat-value stat-counter" data-target="135">0</span>
+          <span class="stat-unit">litros</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">Água potável desperdiçada em um único banho demorado</p>
+      </div>
+
+      <!-- TORNEIRA -->
+      <div class="stat-card">
+        <div class="stat-icon">
+          <img src="/public/torneira.png" alt="Torneira" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));" />
+        </div>
+        <h3 style="font-size: 1.5rem; color: white; margin-bottom: 1rem;">Torneira aberta</h3>
+        <div>
+          <span class="stat-value stat-counter" data-target="12">0</span>
+          <span class="stat-unit">litros/min</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">Escovar dentes com a torneira ligada desperdiça esta quantidade por minuto</p>
+      </div>
+
+      <!-- MÁQUINA DE ROUPA -->
+      <div class="stat-card">
+        <div class="stat-icon">
+          <img src="/maquina.png" alt="Máquina de Lavar Roupa" style="width: 80px; height: 80px; object-fit: contain; filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));" />
+        </div>
+        <h3 style="font-size: 1.5rem; color: white; margin-bottom: 1rem;">Máquina de lavar</h3>
+        <div>
+          <span class="stat-value stat-counter" data-target="200">0</span>
+          <span class="stat-unit">litros</span>
+        </div>
+        <p style="color: rgba(255,255,255,0.7); margin-top: 1rem;">Consumo médio de água em um único ciclo de lavagem</p>
+      </div>
+    </div>
+
+    <div class="image-card" style="max-width: 80rem; margin: 3rem auto;">
+      <img src="./assets/water-waste-car.jpg" alt="Desperdício de água lavando carro" />
+      <div class="image-overlay">
+        <div>
+          <p style="font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;">30% desperdiçado</p>
+          <p style="font-size: 1.125rem;">Portugal perde quase um terço da água potável distribuída nas redes públicas</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center; font-size: 0.875rem; color: rgba(255,255,255,0.6); margin-top: 2rem;">
+      Fontes: PORDATA, ERSAR, Instituto Nacional de Estatística (INE, 2024)
+    </div>
+  </div>
+
+  <div class="wave-transition">
+    <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+      <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+            fill="hsl(200 95% 45%)" />
+    </svg>
+  </div>
+</section>
+
+  <!-- Cena 3 - O Poder da Mudança -->
+  <section class="section bg-gradient-water" style="padding: 5rem 0; overflow: hidden;">
+    <div class="bg-effect">
+      <div class="glow-orb glow-water animate-ripple"></div>
+      <div class="glow-orb glow-hope animate-ripple delay-500"></div>
+    </div>
+
+    <div class="container section-content">
+      <div style="max-width: 64rem; margin: 0 auto; text-align: center; margin-bottom: 4rem;">
+        <h2 style="font-size: clamp(2rem, 6vw, 4rem); font-weight: 700; color: white; margin-bottom: 2rem;">
+          O Poder da Mudança
+        </h2>
+        <div style="color: rgba(255,255,255,0.9); font-size: clamp(1.25rem, 2.5vw, 2rem); line-height: 1.6;">
+          <p style="margin-bottom: 1.5rem;">Poupar não é deixar de viver.</p>
+          <p style="font-size: clamp(1.5rem, 3vw, 2.5rem); font-weight: 600; margin-bottom: 1.5rem;">
+            É cuidar do que nos mantém vivos.
+          </p>
+          <p>É fazer do azul — a cor da vida — algo que nunca desapareça.</p>
+        </div>
+      </div>
+
+      <div class="tips-grid" style="max-width: 80rem; margin: 0 auto;">
+        <div class="image-card" style="box-shadow: var(--shadow-glow);">
+          <img src="./assets/hope-planting.jpg" alt="Plantando esperança" style="height: 20rem; transition: transform 0.7s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'" />
+          <div class="image-overlay">
+            <p style="font-size: 1.5rem; font-weight: 700;">Pequenas ações, grande impacto</p>
+          </div>
+        </div>
+
+        <div class="tips-card shadow-glow">
+          <svg style="width: 4rem; height: 4rem; color: hsl(var(--water-light)); margin-bottom: 1.5rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+          </svg>
+          <h3 style="font-size: 1.875rem; font-weight: 700; color: white; margin-bottom: 1.5rem;">Como você pode ajudar:</h3>
+          <ul>
+            <li>
+              <span style="color: hsl(var(--water-light)); font-size: 1.25rem;">✓</span>
+              <span>Feche a torneira ao escovar os dentes</span>
+            </li>
+            <li>
+              <span style="color: hsl(var(--water-light)); font-size: 1.25rem;">✓</span>
+              <span>Reduza o tempo de banho para 5-7 minutos</span>
+            </li>
+            <li>
+              <span style="color: hsl(var(--water-light)); font-size: 1.25rem;">✓</span>
+              <span>Use regador em vez de mangueira</span>
+            </li>
+            <li>
+              <span style="color: hsl(var(--water-light)); font-size: 1.25rem;">✓</span>
+              <span>Recolha água da chuva</span>
+            </li>
+            <li>
+              <span style="color: hsl(var(--water-light)); font-size: 1.25rem;">✓</span>
+              <span>Conserte torneiras que pingam</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="wave-transition">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+              fill="hsl(200 85% 75%)" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Cena 4 - A Cor da Vida -->
+  <section class="section bg-gradient-sky" style="display: flex; align-items: center; justify-content: center; overflow: hidden;">
+    <div style="position: absolute; inset: 0;">
+      <div style="position: absolute; top: 33%; left: 50%; transform: translateX(-50%); width: 100%; max-width: 40rem; height: 100%;">
+        <img src="./assets/drop-earth.jpg" alt="Gota refletindo a Terra" class="animate-drop" style="width: 100%; height: 100%; object-fit: contain; opacity: 0.9;" />
+      </div>
+    </div>
+
+    <div class="container section-content" style="text-align: center;">
+      <div style="max-width: 64rem; margin: 0 auto;">
+        <h2 class="animate-fade-in" style="font-size: clamp(2.5rem, 7vw, 6rem); font-weight: 700; color: white; text-shadow: 0 10px 40px rgba(0,0,0,0.5); margin-bottom: 3rem;">
+          A cor da vida começa<br />em tons de azul
+        </h2>
+
+        <div class="tags animate-fade-in delay-500">
+          <span class="tag">#PoupeÁgua</span>
+          <span class="tag">#AVidaEmCorDeAzul</span>
+          <span class="tag">#CadaGotaConta</span>
+          <span class="tag">#PortugalSustentável</span>
+        </div>
+
+        <div style="padding-top: 2rem;" class="animate-fade-in delay-700">
+          <h3 style="font-size: 1.875rem; font-weight: 600; color: white; margin-bottom: 1.5rem;">
+            Compartilhe esta mensagem
+          </h3>
+          <div class="share-buttons">
+            <button class="share-btn share-twitter" onclick="shareOnTwitter()">
+              Compartilhar no Twitter
+            </button>
+            <button class="share-btn share-facebook" onclick="shareOnFacebook()">
+              Compartilhar no Facebook
+            </button>
+            <button class="share-btn share-linkedin" onclick="shareOnLinkedIn()">
+              Compartilhar no LinkedIn
+            </button>
+            <button class="share-btn share-whatsapp" onclick="shareOnWhatsApp()">
+              Compartilhar no WhatsApp
+            </button>
+            <button class="share-btn share-copy" onclick="copyLink()">
+              Copiar Link
+            </button>
+          </div>
+        </div>
+
+        <p class="animate-fade-in delay-1000" style="font-size: 1.125rem; color: rgba(255,255,255,0.8); max-width: 48rem; margin: 3rem auto 0;">
+          Juntos podemos fazer a diferença. Cada gota conta, cada ação importa.<br />
+          O futuro do planeta está em nossas mãos — e em cada gota que poupamos hoje.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 A Vida em Cor de Azul - Campanha de Conscientização</p>
+    <p style="margin-top: 0.5rem;">Dados baseados em fontes oficiais: ONU, ERSAR, INE, Agência Portuguesa do Ambiente</p>
+  </footer>
+
+  <script>
+    // Counter Animation
+    function animateCounter(element) {
+      const target = parseInt(element.getAttribute('data-target'));
+      const duration = 2000;
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 16);
+    }
+
+    // Intersection Observer for counters
+    const observerOptions = {
+      threshold: 0.5,
+      rootMargin: '0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
+          entry.target.classList.add('counted');
+          animateCounter(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.stat-counter').forEach(counter => {
+      observer.observe(counter);
+    });
+
+    // Share Functions
+    const shareUrl = window.location.href;
+    const shareText = "A Vida em Cor de Azul - Juntos podemos preservar a água. Cada gota conta! 💧";
+
+    function shareOnTwitter() {
+      window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
+
+    function shareOnFacebook() {
+      window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
+
+    function shareOnLinkedIn() {
+      window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`, '_blank');
+    }
+
+    function shareOnWhatsApp() {
+      window.open(`https://wa.me/?text=${encodeURIComponent(shareText + ' ' + shareUrl)}`, '_blank');
+    }
+
+    function copyLink() {
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert('Link copiado para a área de transferência!');
+      }).catch(err => {
+        console.error('Erro ao copiar:', err);
+      });
+    }
+  </script>
+</body>
+</html>

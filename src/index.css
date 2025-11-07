@@ -1,0 +1,312 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Cores base - tons frios iniciais */
+    --background: 0 0% 100%;
+    --foreground: 220 15% 15%;
+
+    /* Cores da seca - cinza, bege */
+    --drought: 30 8% 45%;
+    --drought-light: 30 10% 85%;
+    --drought-dark: 30 15% 25%;
+
+    /* Cores da água - azul vibrante */
+    --water: 200 95% 45%;
+    --water-light: 200 85% 75%;
+    --water-dark: 200 85% 25%;
+    --water-glow: 200 100% 55%;
+
+    /* Cores de esperança - azul-esverdeado */
+    --hope: 175 65% 45%;
+    --hope-light: 175 55% 75%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    --primary: 200 95% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 8% 45%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 30 10% 85%;
+    --muted-foreground: 30 15% 35%;
+
+    --accent: 175 65% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 85%;
+    --input: 220 13% 85%;
+    --ring: 200 95% 45%;
+
+    --radius: 0.75rem;
+
+    /* Gradientes cinematográficos */
+    --gradient-drought: linear-gradient(135deg, hsl(30 8% 45%) 0%, hsl(30 15% 25%) 100%);
+    --gradient-water: linear-gradient(135deg, hsl(200 95% 45%) 0%, hsl(200 85% 25%) 100%);
+    --gradient-hope: linear-gradient(135deg, hsl(175 65% 45%) 0%, hsl(200 95% 45%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(200 85% 75%) 0%, hsl(200 95% 45%) 100%);
+
+    /* Sombras e efeitos */
+    --shadow-soft: 0 8px 32px -8px hsl(220 15% 15% / 0.15);
+    --shadow-glow: 0 0 40px hsl(200 100% 55% / 0.4);
+    --shadow-dramatic: 0 20px 60px -20px hsl(220 15% 15% / 0.3);
+  }
+
+  .dark {
+    --background: 220 20% 8%;
+    --foreground: 0 0% 95%;
+
+    --drought: 30 8% 35%;
+    --drought-light: 30 10% 25%;
+    --drought-dark: 30 15% 15%;
+
+    --water: 200 85% 55%;
+    --water-light: 200 75% 65%;
+    --water-dark: 200 85% 35%;
+    --water-glow: 200 100% 65%;
+
+    --hope: 175 55% 55%;
+    --hope-light: 175 45% 65%;
+
+    --card: 220 20% 12%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 20% 12%;
+    --popover-foreground: 0 0% 95%;
+
+    --primary: 200 85% 55%;
+    --primary-foreground: 220 20% 8%;
+
+    --secondary: 30 8% 35%;
+    --secondary-foreground: 0 0% 95%;
+
+    --muted: 220 20% 18%;
+    --muted-foreground: 0 0% 65%;
+
+    --accent: 175 55% 55%;
+    --accent-foreground: 220 20% 8%;
+
+    --destructive: 0 72% 50%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 220 20% 20%;
+    --input: 220 20% 20%;
+    --ring: 200 85% 55%;
+
+    --gradient-drought: linear-gradient(135deg, hsl(30 8% 35%) 0%, hsl(30 15% 15%) 100%);
+    --gradient-water: linear-gradient(135deg, hsl(200 85% 55%) 0%, hsl(200 85% 35%) 100%);
+    --gradient-hope: linear-gradient(135deg, hsl(175 55% 55%) 0%, hsl(200 85% 55%) 100%);
+    --gradient-sky: linear-gradient(180deg, hsl(200 75% 65%) 0%, hsl(200 85% 55%) 100%);
+
+    --shadow-soft: 0 8px 32px -8px hsl(0 0% 0% / 0.4);
+    --shadow-glow: 0 0 40px hsl(200 100% 65% / 0.5);
+    --shadow-dramatic: 0 20px 60px -20px hsl(0 0% 0% / 0.6);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  /* Animações cinematográficas */
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes drop-fall {
+    0% {
+      transform: translateY(-100px) scale(0);
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes wave-flow {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float-smooth {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(1.5);
+      opacity: 0;
+    }
+  }
+
+  @keyframes counter {
+    from {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-up {
+    animation: fade-up 0.8s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scale-in 0.6s ease-out forwards;
+  }
+
+  .animate-drop {
+    animation: drop-fall 2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-ripple {
+    animation: ripple 2s ease-out infinite;
+  }
+
+  .animate-counter {
+    animation: counter 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .animate-wave {
+    animation: wave-flow 20s linear infinite;
+  }
+
+  .animate-float {
+    animation: float-smooth 6s ease-in-out infinite;
+  }
+
+  /* Delay classes */
+  .delay-100 { animation-delay: 0.1s; }
+  .delay-200 { animation-delay: 0.2s; }
+  .delay-300 { animation-delay: 0.3s; }
+  .delay-400 { animation-delay: 0.4s; }
+  .delay-500 { animation-delay: 0.5s; }
+  .delay-700 { animation-delay: 0.7s; }
+  .delay-1000 { animation-delay: 1s; }
+
+  /* Gradientes de fundo */
+  .bg-gradient-drought {
+    background: var(--gradient-drought);
+  }
+
+  .bg-gradient-water {
+    background: var(--gradient-water);
+  }
+
+  .bg-gradient-hope {
+    background: var(--gradient-hope);
+  }
+
+  .bg-gradient-sky {
+    background: var(--gradient-sky);
+  }
+
+  /* Texto com gradiente */
+  .text-gradient-water {
+    background: var(--gradient-water);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-hope {
+    background: var(--gradient-hope);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Sombras */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-dramatic {
+    box-shadow: var(--shadow-dramatic);
+  }
+
+  /* Efeito parallax */
+  .parallax-slow {
+    transform: translateY(var(--parallax-offset, 0));
+  }
+}
